@@ -1,0 +1,23 @@
+{
+    "name": "Thai Word Swap",
+    "description": "Swap words for Thai words to help language learning",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": [
+       "activeTab",
+       "storage"
+    ],
+    "action": {
+        "default_title": "Thai Word Swap",
+        "default_popup": "popup.html"
+    },
+    "background": {
+       "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+          "js": ["content.js"],
+          "matches": ["<all_urls>"]
+        }
+    ]
+ }
