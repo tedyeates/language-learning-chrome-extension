@@ -1,5 +1,7 @@
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
+const path = require('path')
+const CopyPlugin = require('copy-webpack-plugin')
+const { EnvironmentPlugin } = require('webpack')
+
 module.exports = {
     mode: "production",
     entry: {
@@ -26,5 +28,8 @@ module.exports = {
         new CopyPlugin({
             patterns: [{from: ".", to: ".", context: "public"}]
         }),
+        new EnvironmentPlugin({
+            TRANSLATION_SERVER: 'http://localhost:5000/'
+        })
     ],
-};
+}

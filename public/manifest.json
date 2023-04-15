@@ -18,6 +18,10 @@
         {
           "js": ["content.js"],
           "matches": ["<all_urls>"]
+        },
+        {
+            "css": ["underline.css"],
+            "matches": ["<all_urls>"]
         }
     ]
  }
