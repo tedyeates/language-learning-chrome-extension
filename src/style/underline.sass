@@ -1,0 +1,19 @@
+@use 'popup'
+@use 'constants'
+
+.thl-underline
+    border-bottom: 1px dotted constants.$primary
+    position: relative
+    display: inline-block
+
+    .thl-popup
+        @extend %popup-base
+        @extend %popup-position-top
+        @extend %popup-content
+
+        &::after 
+            @extend %popup-arrow-bottom
+
+
+    &:hover .thl-popup 
+        visibility: visible

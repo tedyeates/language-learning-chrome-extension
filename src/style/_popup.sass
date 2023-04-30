@@ -1,0 +1,39 @@
+@use 'constants'
+@use 'button'
+@use 'sass:math'
+    
+%popup-base
+    visibility: hidden
+    width: constants.$popup-width
+    background-color: constants.$dark
+    color: constants.$light
+    border-radius: 6px
+    padding: 5px 0
+
+
+%popup-position-top
+    bottom: 100%
+    left: 50%
+    margin-left: math.div(-(constants.$popup-width), 2)
+    position: absolute
+    z-index: 1
+
+
+%popup-arrow-bottom
+    content: " "
+    position: absolute
+    top: 100% /* At the bottom of the tooltip */
+    left: 50%
+    margin-left: -5px
+    border-width: 5px
+    border-style: solid
+    border-color: constants.$dark transparent transparent transparent
+
+
+%popup-content
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    .thl-popup-word
+        @extend %button

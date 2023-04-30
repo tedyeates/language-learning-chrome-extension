@@ -1,0 +1,20 @@
+@use 'constants'
+    
+%button
+    background-color: constants.$light
+    color: constants.$dark
+    border: 2px solid constants.$primary
+    border-radius: 8px 
+    
+    margin: .5vh .8vw
+    padding: .5vh .5vw
+    font-size: .8vw
+    white-space: nowrap
+    display: inline-block
+    
+    transition-duration: background-color 0.4s, color 0.4s
+    cursor: pointer
+
+    &:hover
+        background-color: constants.$primary
+        color: constants.$light
