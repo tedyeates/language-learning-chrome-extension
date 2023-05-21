@@ -8,7 +8,10 @@ function isHidden(element:HTMLElement) {
 
 
 export const getVisibleParagraphsOnPage = () => {
-    const paragraphs = [...document.getElementsByTagName("p")]
+    const paragraphs = [
+        ...document.getElementsByTagName("p"), 
+        ...document.getElementsByTagName("li")
+    ]
     return paragraphs.filter((value) => !isHidden(value))
 }
 

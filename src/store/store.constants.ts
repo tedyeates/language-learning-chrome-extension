@@ -1,1 +1,1 @@
-export const learntLevel = 5
+export const learntLevel = 2

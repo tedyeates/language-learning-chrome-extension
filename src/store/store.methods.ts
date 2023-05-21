@@ -8,7 +8,7 @@ const saveNewWord = (word: Word, seenWords: SeenWords) => {
 
 
 const calculateLevel = (word: Word) => {
-    return 0
+    return word.seenCount
 }
 
 
@@ -28,23 +28,27 @@ const updateWord = (word: Word, seenWords: SeenWords) => {
         ...seenWords, 
         [word.value]: newValue
     }})
+    
 }
 
 
 export const saveWord = async (word: Word) => {
-    let seenWords = await chrome.storage.sync.get('seenWords')
-
-    if (word.value in seenWords) {
-        return updateWord(word, seenWords)
+    let results = await chrome.storage.sync.get('seenWords')
+    console.log(results.seenWords)
+    if (word.value in results.seenWords) {
+        return updateWord(word, results.seenWords)
     }
 
-    saveNewWord(word, seenWords)
+    saveNewWord(word, results.seenWords)
 }
 
 
 export const getLearntWords = async () => {
-    const seenWords = await chrome.storage.sync.get('seenWords')
-    return seenWords.filter((seenWord: Word) => (
-        seenWord.level && seenWord.level > learntLevel
+    const results = await chrome.storage.sync.get('seenWords')
+    console.log(results.seenWords)
+    if (!results.seenWords) return []
+
+    return Object.values<Word>(results.seenWords).filter(wordData => (
+        wordData.level && wordData.level >= learntLevel
     ))
 }

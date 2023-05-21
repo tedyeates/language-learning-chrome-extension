@@ -1,6 +1,8 @@
 import marktext from '../marktext/marktextmethods'
 import popup from '../popup/popup.methods'
 import scraping from '../scraping/scraping.methods'
+import { getLearntWords } from '../store/store.methods'
+import { Word } from '../store/store.types'
 import { translate } from '../translating/translating.methods'
 
 
@@ -13,11 +15,15 @@ const pickNewWord = async () => {
     console.log("random word: " + randomWord)
     const translatedWord = await translate(randomWord)
 
-    const wordsToMark = [translatedWord.value]
+    const learntWords = await getLearntWords()
+    const wordsToMark = [
+        translatedWord.value, 
+        ...learntWords.map((word:Word) => word.value)
+    ]
     console.log(`translated word: ${JSON.stringify(translatedWord)}`)
     marktext.markAllTextForTranslation(wordsToMark, paragraphs)
 
-    popup.addInformationPopups([translatedWord])
+    popup.addInformationPopups([translatedWord, ...learntWords])
 }
 
 
